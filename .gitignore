@@ -1,6 +1,57 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.buildlog/
+.history
+.svn/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+/build/
+
+# Web related
+lib/generated_plugin_registrant.dart
+
+# Exceptions to above rules.
+!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
+.metadata
+coverage/
+test_results.xml
+**/failures/
 
 # FVM Version Cache
 .fvm/
+.fvm/flutter_sdk
 
-build/
-.dart_tool/
+# */.bundle/vendor/*
+# **/fastlane/report.xml
+# **/generated
+
+# Deployment related files
+ios/*.cer
+ios/*.mobileprovision
+ios/Runner.app.dSYM.zip
+ios/Runner.ipa
+
+# To get banner-based intl, use
+# ./move_translations_flavor_based.sh frx
+# fvm flutter gen-l10n
+# lib/l10n/arb/**
+# scripts_test/diff_flavor_based_translations
+# test/tmp
