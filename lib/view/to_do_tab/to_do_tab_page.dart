@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
+import '../../util/app_constant.dart';
+import '../to_do_categories/to_do_categories_page.dart';
 import 'to_do_tab_bar_view_widget.dart';
 import 'to_do_tab_bar_widget.dart';
 
 class ToDoTabPage extends StatefulWidget {
-  final List<String> todoList;
+  static const String routeName = "/";
 
-  const ToDoTabPage({required this.todoList, super.key});
+  const ToDoTabPage({super.key});
 
   @override
   State<ToDoTabPage> createState() => _ToDoTabPageState();
@@ -20,7 +23,7 @@ class _ToDoTabPageState extends State<ToDoTabPage>
   void initState() {
     super.initState();
     _tabController = TabController(
-      length: widget.todoList.length,
+      length: categories.length,
       vsync: this,
     );
     _tabController.addListener(_handleTabSelection);
@@ -47,18 +50,18 @@ class _ToDoTabPageState extends State<ToDoTabPage>
           IconButton(
             icon: const Icon(Icons.more_vert),
             onPressed: () {
-              // Handle search action
+              context.go("/${ToDoCategoriesPage.routeName}");
             },
           ),
         ],
         title: ToDoTabBarWidget(
-          todoList: widget.todoList,
+          todoList: categories,
           tabController: _tabController,
         ),
       ),
       body: ToDoTabBarViewWidget(
         tabController: _tabController,
-        todoList: widget.todoList,
+        todoList: categories,
       ),
     );
   }
