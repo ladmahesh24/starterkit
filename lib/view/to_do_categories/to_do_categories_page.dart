@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 import '../../util/app_constant.dart';
-import '../to_do_category/to_do_category_page.dart';
+import '../../util/widget/to_do_app_bar.dart';
+import 'to_do_categories_banner_widget.dart';
+import 'to_do_categories_create_widget.dart';
+import 'to_do_categories_item_widget.dart';
 
 class ToDoCategoriesPage extends StatelessWidget {
   static const String routeName = "to_do_categories_page";
@@ -11,40 +13,20 @@ class ToDoCategoriesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Manage categories"),
-        centerTitle: false,
+      appBar: const ToDoAppBar(
+        title: "Manage categories",
       ),
       body: ListView.builder(
         itemCount: categories.length + 2,
         itemBuilder: (BuildContext context, int index) {
           if (index == 0) {
-            return Container(
-              padding: const EdgeInsets.all(8),
-              color: Theme.of(context).primaryColorLight,
-              child: const Center(
-                child: Text(
-                  "Categories display on home page",
-                ),
-              ),
-            );
+            return const ToDoCategoriesBannerWidget();
           }
           if (index == categories.length + 1) {
-            return ListTile(
-              leading: const Icon(Icons.add),
-              title: const Text("Create New"),
-              onTap: () {},
-            );
+            return const ToDoCategoriesCreateWidget();
           }
-          return ListTile(
-            title: Text(categories[index - 1]),
-            leading: const Icon(Icons.radio_button_checked),
-            trailing: IconButton(
-              icon: const Icon(Icons.more_vert),
-              onPressed: () {
-                context.go("/${ToDoCategoryPage.routeName}");
-              },
-            ),
+          return ToDoCategoriesItemWidget(
+            category: categories[index - 1],
           );
         },
       ),

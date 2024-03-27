@@ -21,7 +21,8 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: ToDoCategoryPage.routeName,
           builder: (BuildContext context, GoRouterState state) {
-            return const ToDoCategoryPage();
+            final String categoryName = (state.extra ?? "") as String;
+            return ToDoCategoryPage(categoryName: categoryName);
           },
         ),
       ],
