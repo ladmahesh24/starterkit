@@ -22,7 +22,7 @@ class ToDoTabBarWidget extends StatelessWidget {
       overlayColor: MaterialStateProperty.resolveWith(
         (Set<MaterialState> states) => Colors.transparent,
       ),
-      // labelPadding: EdgeInsets.zero,
+      tabAlignment: TabAlignment.start,
       controller: tabController,
       tabs: todoList.mapIndexed((int index, String value) {
         return Tab(
