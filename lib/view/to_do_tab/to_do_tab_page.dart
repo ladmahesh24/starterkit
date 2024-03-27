@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 
 import '../../util/app_constant.dart';
 import '../to_do_categories/to_do_categories_page.dart';
+import 'to_do_tab_bar_create_to_do_dialog.dart';
 import 'to_do_tab_bar_view_widget.dart';
 import 'to_do_tab_bar_widget.dart';
 
@@ -62,6 +63,17 @@ class _ToDoTabPageState extends State<ToDoTabPage>
       body: ToDoTabBarViewWidget(
         tabController: _tabController,
         todoList: categories,
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return const ToDoTabBarCreateToDoDialog();
+            },
+          );
+        },
+        child: const Icon(Icons.add),
       ),
     );
   }
