@@ -19,22 +19,22 @@ mixin _$ToDoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function() created,
-    required TResult Function() updated,
+    required TResult Function(Category category, ToDo todo) created,
+    required TResult Function(Category category, ToDo todo) updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
-    TResult? Function()? created,
-    TResult? Function()? updated,
+    TResult? Function(Category category, ToDo todo)? created,
+    TResult? Function(Category category, ToDo todo)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function()? created,
-    TResult Function()? updated,
+    TResult Function(Category category, ToDo todo)? created,
+    TResult Function(Category category, ToDo todo)? updated,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -118,8 +118,8 @@ class _$ToDoEventLoadedImpl implements ToDoEventLoaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function() created,
-    required TResult Function() updated,
+    required TResult Function(Category category, ToDo todo) created,
+    required TResult Function(Category category, ToDo todo) updated,
   }) {
     return loaded();
   }
@@ -128,8 +128,8 @@ class _$ToDoEventLoadedImpl implements ToDoEventLoaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
-    TResult? Function()? created,
-    TResult? Function()? updated,
+    TResult? Function(Category category, ToDo todo)? created,
+    TResult? Function(Category category, ToDo todo)? updated,
   }) {
     return loaded?.call();
   }
@@ -138,8 +138,8 @@ class _$ToDoEventLoadedImpl implements ToDoEventLoaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function()? created,
-    TResult Function()? updated,
+    TResult Function(Category category, ToDo todo)? created,
+    TResult Function(Category category, ToDo todo)? updated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -192,6 +192,11 @@ abstract class _$$ToDoEventCreatedImplCopyWith<$Res> {
   factory _$$ToDoEventCreatedImplCopyWith(_$ToDoEventCreatedImpl value,
           $Res Function(_$ToDoEventCreatedImpl) then) =
       __$$ToDoEventCreatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Category category, ToDo todo});
+
+  $CategoryCopyWith<$Res> get category;
+  $ToDoCopyWith<$Res> get todo;
 }
 
 /// @nodoc
@@ -201,57 +206,107 @@ class __$$ToDoEventCreatedImplCopyWithImpl<$Res>
   __$$ToDoEventCreatedImplCopyWithImpl(_$ToDoEventCreatedImpl _value,
       $Res Function(_$ToDoEventCreatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? todo = null,
+  }) {
+    return _then(_$ToDoEventCreatedImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      todo: null == todo
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
+              as ToDo,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get category {
+    return $CategoryCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ToDoCopyWith<$Res> get todo {
+    return $ToDoCopyWith<$Res>(_value.todo, (value) {
+      return _then(_value.copyWith(todo: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$ToDoEventCreatedImpl implements ToDoEventCreated {
-  const _$ToDoEventCreatedImpl();
+  const _$ToDoEventCreatedImpl({required this.category, required this.todo});
+
+  @override
+  final Category category;
+  @override
+  final ToDo todo;
 
   @override
   String toString() {
-    return 'ToDoEvent.created()';
+    return 'ToDoEvent.created(category: $category, todo: $todo)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToDoEventCreatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ToDoEventCreatedImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.todo, todo) || other.todo == todo));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, category, todo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToDoEventCreatedImplCopyWith<_$ToDoEventCreatedImpl> get copyWith =>
+      __$$ToDoEventCreatedImplCopyWithImpl<_$ToDoEventCreatedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function() created,
-    required TResult Function() updated,
+    required TResult Function(Category category, ToDo todo) created,
+    required TResult Function(Category category, ToDo todo) updated,
   }) {
-    return created();
+    return created(category, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
-    TResult? Function()? created,
-    TResult? Function()? updated,
+    TResult? Function(Category category, ToDo todo)? created,
+    TResult? Function(Category category, ToDo todo)? updated,
   }) {
-    return created?.call();
+    return created?.call(category, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function()? created,
-    TResult Function()? updated,
+    TResult Function(Category category, ToDo todo)? created,
+    TResult Function(Category category, ToDo todo)? updated,
     required TResult orElse(),
   }) {
     if (created != null) {
-      return created();
+      return created(category, todo);
     }
     return orElse();
   }
@@ -292,7 +347,15 @@ class _$ToDoEventCreatedImpl implements ToDoEventCreated {
 }
 
 abstract class ToDoEventCreated implements ToDoEvent {
-  const factory ToDoEventCreated() = _$ToDoEventCreatedImpl;
+  const factory ToDoEventCreated(
+      {required final Category category,
+      required final ToDo todo}) = _$ToDoEventCreatedImpl;
+
+  Category get category;
+  ToDo get todo;
+  @JsonKey(ignore: true)
+  _$$ToDoEventCreatedImplCopyWith<_$ToDoEventCreatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -300,6 +363,11 @@ abstract class _$$ToDoEventUpdatedImplCopyWith<$Res> {
   factory _$$ToDoEventUpdatedImplCopyWith(_$ToDoEventUpdatedImpl value,
           $Res Function(_$ToDoEventUpdatedImpl) then) =
       __$$ToDoEventUpdatedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Category category, ToDo todo});
+
+  $CategoryCopyWith<$Res> get category;
+  $ToDoCopyWith<$Res> get todo;
 }
 
 /// @nodoc
@@ -309,57 +377,107 @@ class __$$ToDoEventUpdatedImplCopyWithImpl<$Res>
   __$$ToDoEventUpdatedImplCopyWithImpl(_$ToDoEventUpdatedImpl _value,
       $Res Function(_$ToDoEventUpdatedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? category = null,
+    Object? todo = null,
+  }) {
+    return _then(_$ToDoEventUpdatedImpl(
+      category: null == category
+          ? _value.category
+          : category // ignore: cast_nullable_to_non_nullable
+              as Category,
+      todo: null == todo
+          ? _value.todo
+          : todo // ignore: cast_nullable_to_non_nullable
+              as ToDo,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res> get category {
+    return $CategoryCopyWith<$Res>(_value.category, (value) {
+      return _then(_value.copyWith(category: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ToDoCopyWith<$Res> get todo {
+    return $ToDoCopyWith<$Res>(_value.todo, (value) {
+      return _then(_value.copyWith(todo: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$ToDoEventUpdatedImpl implements ToDoEventUpdated {
-  const _$ToDoEventUpdatedImpl();
+  const _$ToDoEventUpdatedImpl({required this.category, required this.todo});
+
+  @override
+  final Category category;
+  @override
+  final ToDo todo;
 
   @override
   String toString() {
-    return 'ToDoEvent.updated()';
+    return 'ToDoEvent.updated(category: $category, todo: $todo)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToDoEventUpdatedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ToDoEventUpdatedImpl &&
+            (identical(other.category, category) ||
+                other.category == category) &&
+            (identical(other.todo, todo) || other.todo == todo));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, category, todo);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToDoEventUpdatedImplCopyWith<_$ToDoEventUpdatedImpl> get copyWith =>
+      __$$ToDoEventUpdatedImplCopyWithImpl<_$ToDoEventUpdatedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
-    required TResult Function() created,
-    required TResult Function() updated,
+    required TResult Function(Category category, ToDo todo) created,
+    required TResult Function(Category category, ToDo todo) updated,
   }) {
-    return updated();
+    return updated(category, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
-    TResult? Function()? created,
-    TResult? Function()? updated,
+    TResult? Function(Category category, ToDo todo)? created,
+    TResult? Function(Category category, ToDo todo)? updated,
   }) {
-    return updated?.call();
+    return updated?.call(category, todo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
-    TResult Function()? created,
-    TResult Function()? updated,
+    TResult Function(Category category, ToDo todo)? created,
+    TResult Function(Category category, ToDo todo)? updated,
     required TResult orElse(),
   }) {
     if (updated != null) {
-      return updated();
+      return updated(category, todo);
     }
     return orElse();
   }
@@ -400,7 +518,15 @@ class _$ToDoEventUpdatedImpl implements ToDoEventUpdated {
 }
 
 abstract class ToDoEventUpdated implements ToDoEvent {
-  const factory ToDoEventUpdated() = _$ToDoEventUpdatedImpl;
+  const factory ToDoEventUpdated(
+      {required final Category category,
+      required final ToDo todo}) = _$ToDoEventUpdatedImpl;
+
+  Category get category;
+  ToDo get todo;
+  @JsonKey(ignore: true)
+  _$$ToDoEventUpdatedImplCopyWith<_$ToDoEventUpdatedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
