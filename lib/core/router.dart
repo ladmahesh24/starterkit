@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'view/to_do_categories/to_do_categories_page.dart';
-import 'view/to_do_category/to_do_category_page.dart';
-import 'view/to_do_tab/to_do_tab_page.dart';
+import '../models/category.dart';
+import '../view/to_do_categories/to_do_categories_page.dart';
+import '../view/to_do_category/to_do_category_page.dart';
+import '../view/to_do_tab/to_do_tab_page.dart';
 
 final GoRouter router = GoRouter(
   routes: <RouteBase>[
@@ -15,14 +16,15 @@ final GoRouter router = GoRouter(
         GoRoute(
           path: ToDoCategoriesPage.routeName,
           builder: (BuildContext context, GoRouterState state) {
-            return const ToDoCategoriesPage();
+            final List<Category> listCategory = (state.extra ?? "") as List<Category>;
+            return ToDoCategoriesPage(listCategory:listCategory);
           },
         ),
         GoRoute(
           path: ToDoCategoryPage.routeName,
           builder: (BuildContext context, GoRouterState state) {
-            final String categoryName = (state.extra ?? "") as String;
-            return ToDoCategoryPage(categoryName: categoryName);
+            final Category category = (state.extra ?? "") as Category;
+            return ToDoCategoryPage(category: category);
           },
         ),
       ],

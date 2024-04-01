@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
-import '../../main.dart';
+import '../../core/dependency_registration.dart';
 import '../../models/to_do.dart';
 import 'app_database.dart';
 
@@ -22,7 +22,7 @@ class ToDoRepository {
   Future<List<Map<String, dynamic>>> _getJoinedToDos() async {
     final Database db = await _appDatabase.getDatabase();
     return db.rawQuery('''
-      SELECT todo.*, category.name AS category_name, category.category_id AS category_id
+      SELECT todo.*, category.category_name AS category_name, category.category_id AS category_id
       FROM todo
       LEFT JOIN category ON todo.category_id = category.category_id
     ''');

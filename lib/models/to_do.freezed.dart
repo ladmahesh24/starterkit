@@ -23,6 +23,7 @@ mixin _$ToDo {
   String get task => throw _privateConstructorUsedError;
   String get dueDate => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false)
   Category get category => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
 
@@ -40,7 +41,7 @@ abstract class $ToDoCopyWith<$Res> {
       {String task,
       String dueDate,
       int categoryId,
-      Category category,
+      @JsonKey(includeToJson: false) Category category,
       int? id});
 
   $CategoryCopyWith<$Res> get category;
@@ -109,7 +110,7 @@ abstract class _$$ToDoImplCopyWith<$Res> implements $ToDoCopyWith<$Res> {
       {String task,
       String dueDate,
       int categoryId,
-      Category category,
+      @JsonKey(includeToJson: false) Category category,
       int? id});
 
   @override
@@ -165,7 +166,7 @@ class _$ToDoImpl implements _ToDo {
       {required this.task,
       required this.dueDate,
       required this.categoryId,
-      required this.category,
+      @JsonKey(includeToJson: false) required this.category,
       this.id});
 
   factory _$ToDoImpl.fromJson(Map<String, dynamic> json) =>
@@ -178,6 +179,7 @@ class _$ToDoImpl implements _ToDo {
   @override
   final int categoryId;
   @override
+  @JsonKey(includeToJson: false)
   final Category category;
   @override
   final int? id;
@@ -225,7 +227,7 @@ abstract class _ToDo implements ToDo {
       {required final String task,
       required final String dueDate,
       required final int categoryId,
-      required final Category category,
+      @JsonKey(includeToJson: false) required final Category category,
       final int? id}) = _$ToDoImpl;
 
   factory _ToDo.fromJson(Map<String, dynamic> json) = _$ToDoImpl.fromJson;
@@ -237,6 +239,7 @@ abstract class _ToDo implements ToDo {
   @override
   int get categoryId;
   @override
+  @JsonKey(includeToJson: false)
   Category get category;
   @override
   int? get id;

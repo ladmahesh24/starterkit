@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../bloc/to_do_bloc/to_do_bloc.dart';
+import '../../bloc/category_bloc/category_bloc.dart';
 import '../../models/category.dart';
-import '../../models/to_do.dart';
-import '../../util/app_constant.dart';
 
 class ToDoCategoriesCreateDialog extends StatefulWidget {
   const ToDoCategoriesCreateDialog({super.key});
@@ -53,18 +51,9 @@ class _ToDoCategoriesCreateDialogState
                 error = "Please enter category name!";
               });
             } else {
-              categories.add(enteredText);
-              context.read<ToDoBloc>().add(
-                    ToDoEvent.created(
+              context.read<CategoryBloc>().add(
+                    CategoryEvent.created(
                       category: Category(categoryName: enteredText),
-                      todo: const ToDo(
-                        task: "task",
-                        dueDate: "dueDate",
-                        categoryId: 1,
-                        category: Category(
-                          categoryName: "categoryName",
-                        ),
-                      ),
                     ),
                   );
               Navigator.of(context).pop();

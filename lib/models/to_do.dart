@@ -12,6 +12,7 @@ class ToDo with _$ToDo {
     required String task,
     required String dueDate,
     required int categoryId,
+    @JsonKey(includeToJson: false)
     required Category category,
     int? id,
   }) = _ToDo;

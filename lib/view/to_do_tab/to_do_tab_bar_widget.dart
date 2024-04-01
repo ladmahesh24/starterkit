@@ -1,14 +1,16 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
+import '../../models/category.dart';
+
 class ToDoTabBarWidget extends StatelessWidget {
   const ToDoTabBarWidget({
-    required this.todoList,
+    required this.categoryList,
     required this.tabController,
     super.key,
   });
 
-  final List<String> todoList;
+  final List<Category> categoryList;
   final TabController tabController;
 
   @override
@@ -24,7 +26,7 @@ class ToDoTabBarWidget extends StatelessWidget {
       ),
       tabAlignment: TabAlignment.start,
       controller: tabController,
-      tabs: todoList.mapIndexed((int index, String value) {
+      tabs: categoryList.mapIndexed((int index, Category category) {
         return Tab(
           child: Container(
             decoration: BoxDecoration(
@@ -35,7 +37,7 @@ class ToDoTabBarWidget extends StatelessWidget {
             ),
             padding: const EdgeInsets.all(16),
             child: Text(
-              value,
+              category.categoryName,
               style: TextStyle(
                 height: 1,
                 // backgroundColor: Colors.amber,

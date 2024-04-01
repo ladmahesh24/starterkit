@@ -1,6 +1,6 @@
 import 'package:sqflite/sqflite.dart';
 
-import '../../main.dart';
+import '../../core/dependency_registration.dart';
 import '../../models/category.dart';
 import 'app_database.dart';
 

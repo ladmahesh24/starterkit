@@ -19,6 +19,5 @@ Map<String, dynamic> _$$ToDoImplToJson(_$ToDoImpl instance) =>
       'task': instance.task,
       'due_date': instance.dueDate,
       'category_id': instance.categoryId,
-      'category': instance.category,
       'id': instance.id,
     };

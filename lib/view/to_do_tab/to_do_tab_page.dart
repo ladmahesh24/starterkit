@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../util/app_constant.dart';
-import '../to_do_categories/to_do_categories_page.dart';
-import 'to_do_tab_bar_create_to_do_dialog.dart';
-import 'to_do_tab_bar_view_widget.dart';
-import 'to_do_tab_bar_widget.dart';
+import '../../bloc/category_bloc/category_bloc.dart';
+import 'to_do_tab_widget.dart';
 
 class ToDoTabPage extends StatefulWidget {
   static const String routeName = "/";
@@ -16,65 +13,25 @@ class ToDoTabPage extends StatefulWidget {
   State<ToDoTabPage> createState() => _ToDoTabPageState();
 }
 
-class _ToDoTabPageState extends State<ToDoTabPage>
-    with SingleTickerProviderStateMixin {
-  late TabController _tabController;
-
-  @override
-  void initState() {
-    super.initState();
-    _tabController = TabController(
-      length: categories.length,
-      vsync: this,
-    );
-    _tabController.addListener(_handleTabSelection);
-  }
-
-  void _handleTabSelection() {
-    if (!_tabController.indexIsChanging) {
-      setState(() {});
-    }
-  }
-
-  @override
-  void dispose() {
-    _tabController.removeListener(_handleTabSelection);
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _ToDoTabPageState extends State<ToDoTabPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        actions: <Widget>[
-          IconButton(
-            icon: const Icon(Icons.more_vert),
-            onPressed: () {
-              context.go("/${ToDoCategoriesPage.routeName}");
-            },
-          ),
-        ],
-        title: ToDoTabBarWidget(
-          todoList: categories,
-          tabController: _tabController,
-        ),
-      ),
-      body: ToDoTabBarViewWidget(
-        tabController: _tabController,
-        todoList: categories,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return const ToDoTabBarCreateToDoDialog();
-            },
+    return BlocConsumer<CategoryBloc, CategoryState>(
+      buildWhen: (
+        CategoryState previous,
+        CategoryState current,
+      ) =>
+          current is CategoryStateLoadSuccess,
+      builder: (BuildContext context, Object? state) {
+        if (state is CategoryStateLoadSuccess) {
+          return ToDoTabWidget(
+            listCategory: state.listCategory,
           );
-        },
-        child: const Icon(Icons.add),
-      ),
+        } else {
+          return const SizedBox();
+        }
+      },
+      listener: (BuildContext context, Object? state) {},
     );
   }
 }
