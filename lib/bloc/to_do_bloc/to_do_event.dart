@@ -2,7 +2,9 @@ part of "to_do_bloc.dart";
 
 @freezed
 class ToDoEvent with _$ToDoEvent {
-  const factory ToDoEvent.loaded() = ToDoEventLoaded;
+  const factory ToDoEvent.loaded({
+    required int categoryID,
+  }) = ToDoEventLoaded;
 
   const factory ToDoEvent.created({
     required ToDo todo,

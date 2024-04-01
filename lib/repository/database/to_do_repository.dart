@@ -19,20 +19,21 @@ class ToDoRepository {
         );
   }
 
-  Future<List<Map<String, dynamic>>> _getJoinedToDos() async {
+  Future<List<Map<String, dynamic>>> _getJoinedToDos(int categoryID) async {
     final Database db = await _appDatabase.getDatabase();
     return db.rawQuery('''
-      SELECT todo.*, category.category_name AS category_name, category.category_id AS category_id
-      FROM todo
+      SELECT todo.*, category.category_name AS category_name
+      FROM todo 
       LEFT JOIN category ON todo.category_id = category.category_id
+      WHERE todo.category_id = $categoryID
     ''');
   }
 
-  Future<List<ToDo>> getToDosWithCategories() async {
-    final List<Map<String, dynamic>> joinedToDos = await _getJoinedToDos();
-    return List<ToDo>.generate(joinedToDos.length, (int i) {
-      return ToDo.fromJsonWithCategory(joinedToDos[i]);
-    });
+  Future<List<ToDo>> getToDosWithCategories(int categoryID) async {
+    final List<Map<String, dynamic>> joinedToDos = await _getJoinedToDos(categoryID);
+    return joinedToDos.map((Map<String, dynamic> json) {
+      return ToDo.fromJsonWithCategory(json);
+    }).toList();
   }
 
   Future<void> updateToDo(ToDo toDo) async {

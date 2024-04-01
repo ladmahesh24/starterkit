@@ -28,15 +28,16 @@ class ToDoBloc extends Bloc<ToDoEvent, ToDoState> {
     Emitter<ToDoState> emit,
   ) async {
     await _toDoRepository.addToDo(toDo: event.todo);
-    add(const ToDoEvent.loaded());
+    add(ToDoEvent.loaded(categoryID: event.todo.categoryId));
   }
 
   Future<void> _loaded(
     ToDoEventLoaded event,
     Emitter<ToDoState> emit,
   ) async {
-    final List<ToDo> listToDo = await _toDoRepository.getToDosWithCategories();
-    print(listToDo);
+    final List<ToDo> listToDo =
+        await _toDoRepository.getToDosWithCategories(event.categoryID);
+    emit(ToDoState.loadSuccess(listToDo: listToDo));
   }
 
   Future<void> _updated(

@@ -23,8 +23,9 @@ mixin _$ToDo {
   String get task => throw _privateConstructorUsedError;
   String get dueDate => throw _privateConstructorUsedError;
   int get categoryId => throw _privateConstructorUsedError;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  Category? get category => throw _privateConstructorUsedError;
   @JsonKey(includeToJson: false)
-  Category get category => throw _privateConstructorUsedError;
   int? get id => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,10 +42,10 @@ abstract class $ToDoCopyWith<$Res> {
       {String task,
       String dueDate,
       int categoryId,
-      @JsonKey(includeToJson: false) Category category,
-      int? id});
+      @JsonKey(includeToJson: false, includeFromJson: false) Category? category,
+      @JsonKey(includeToJson: false) int? id});
 
-  $CategoryCopyWith<$Res> get category;
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -63,7 +64,7 @@ class _$ToDoCopyWithImpl<$Res, $Val extends ToDo>
     Object? task = null,
     Object? dueDate = null,
     Object? categoryId = null,
-    Object? category = null,
+    Object? category = freezed,
     Object? id = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,10 +80,10 @@ class _$ToDoCopyWithImpl<$Res, $Val extends ToDo>
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as Category,
+              as Category?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -92,8 +93,12 @@ class _$ToDoCopyWithImpl<$Res, $Val extends ToDo>
 
   @override
   @pragma('vm:prefer-inline')
-  $CategoryCopyWith<$Res> get category {
-    return $CategoryCopyWith<$Res>(_value.category, (value) {
+  $CategoryCopyWith<$Res>? get category {
+    if (_value.category == null) {
+      return null;
+    }
+
+    return $CategoryCopyWith<$Res>(_value.category!, (value) {
       return _then(_value.copyWith(category: value) as $Val);
     });
   }
@@ -110,11 +115,11 @@ abstract class _$$ToDoImplCopyWith<$Res> implements $ToDoCopyWith<$Res> {
       {String task,
       String dueDate,
       int categoryId,
-      @JsonKey(includeToJson: false) Category category,
-      int? id});
+      @JsonKey(includeToJson: false, includeFromJson: false) Category? category,
+      @JsonKey(includeToJson: false) int? id});
 
   @override
-  $CategoryCopyWith<$Res> get category;
+  $CategoryCopyWith<$Res>? get category;
 }
 
 /// @nodoc
@@ -130,7 +135,7 @@ class __$$ToDoImplCopyWithImpl<$Res>
     Object? task = null,
     Object? dueDate = null,
     Object? categoryId = null,
-    Object? category = null,
+    Object? category = freezed,
     Object? id = freezed,
   }) {
     return _then(_$ToDoImpl(
@@ -146,10 +151,10 @@ class __$$ToDoImplCopyWithImpl<$Res>
           ? _value.categoryId
           : categoryId // ignore: cast_nullable_to_non_nullable
               as int,
-      category: null == category
+      category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
-              as Category,
+              as Category?,
       id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -166,8 +171,8 @@ class _$ToDoImpl implements _ToDo {
       {required this.task,
       required this.dueDate,
       required this.categoryId,
-      @JsonKey(includeToJson: false) required this.category,
-      this.id});
+      @JsonKey(includeToJson: false, includeFromJson: false) this.category,
+      @JsonKey(includeToJson: false) this.id});
 
   factory _$ToDoImpl.fromJson(Map<String, dynamic> json) =>
       _$$ToDoImplFromJson(json);
@@ -179,9 +184,10 @@ class _$ToDoImpl implements _ToDo {
   @override
   final int categoryId;
   @override
-  @JsonKey(includeToJson: false)
-  final Category category;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  final Category? category;
   @override
+  @JsonKey(includeToJson: false)
   final int? id;
 
   @override
@@ -227,8 +233,9 @@ abstract class _ToDo implements ToDo {
       {required final String task,
       required final String dueDate,
       required final int categoryId,
-      @JsonKey(includeToJson: false) required final Category category,
-      final int? id}) = _$ToDoImpl;
+      @JsonKey(includeToJson: false, includeFromJson: false)
+      final Category? category,
+      @JsonKey(includeToJson: false) final int? id}) = _$ToDoImpl;
 
   factory _ToDo.fromJson(Map<String, dynamic> json) = _$ToDoImpl.fromJson;
 
@@ -239,9 +246,10 @@ abstract class _ToDo implements ToDo {
   @override
   int get categoryId;
   @override
-  @JsonKey(includeToJson: false)
-  Category get category;
+  @JsonKey(includeToJson: false, includeFromJson: false)
+  Category? get category;
   @override
+  @JsonKey(includeToJson: false)
   int? get id;
   @override
   @JsonKey(ignore: true)

@@ -18,21 +18,21 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ToDoEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function(int categoryID) loaded,
     required TResult Function(ToDo todo) created,
     required TResult Function(ToDo todo) updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function(int categoryID)? loaded,
     TResult? Function(ToDo todo)? created,
     TResult? Function(ToDo todo)? updated,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function(int categoryID)? loaded,
     TResult Function(ToDo todo)? created,
     TResult Function(ToDo todo)? updated,
     required TResult orElse(),
@@ -84,6 +84,8 @@ abstract class _$$ToDoEventLoadedImplCopyWith<$Res> {
   factory _$$ToDoEventLoadedImplCopyWith(_$ToDoEventLoadedImpl value,
           $Res Function(_$ToDoEventLoadedImpl) then) =
       __$$ToDoEventLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({int categoryID});
 }
 
 /// @nodoc
@@ -93,57 +95,83 @@ class __$$ToDoEventLoadedImplCopyWithImpl<$Res>
   __$$ToDoEventLoadedImplCopyWithImpl(
       _$ToDoEventLoadedImpl _value, $Res Function(_$ToDoEventLoadedImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? categoryID = null,
+  }) {
+    return _then(_$ToDoEventLoadedImpl(
+      categoryID: null == categoryID
+          ? _value.categoryID
+          : categoryID // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ToDoEventLoadedImpl implements ToDoEventLoaded {
-  const _$ToDoEventLoadedImpl();
+  const _$ToDoEventLoadedImpl({required this.categoryID});
+
+  @override
+  final int categoryID;
 
   @override
   String toString() {
-    return 'ToDoEvent.loaded()';
+    return 'ToDoEvent.loaded(categoryID: $categoryID)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ToDoEventLoadedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ToDoEventLoadedImpl &&
+            (identical(other.categoryID, categoryID) ||
+                other.categoryID == categoryID));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, categoryID);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToDoEventLoadedImplCopyWith<_$ToDoEventLoadedImpl> get copyWith =>
+      __$$ToDoEventLoadedImplCopyWithImpl<_$ToDoEventLoadedImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function(int categoryID) loaded,
     required TResult Function(ToDo todo) created,
     required TResult Function(ToDo todo) updated,
   }) {
-    return loaded();
+    return loaded(categoryID);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function(int categoryID)? loaded,
     TResult? Function(ToDo todo)? created,
     TResult? Function(ToDo todo)? updated,
   }) {
-    return loaded?.call();
+    return loaded?.call(categoryID);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function(int categoryID)? loaded,
     TResult Function(ToDo todo)? created,
     TResult Function(ToDo todo)? updated,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded();
+      return loaded(categoryID);
     }
     return orElse();
   }
@@ -184,7 +212,13 @@ class _$ToDoEventLoadedImpl implements ToDoEventLoaded {
 }
 
 abstract class ToDoEventLoaded implements ToDoEvent {
-  const factory ToDoEventLoaded() = _$ToDoEventLoadedImpl;
+  const factory ToDoEventLoaded({required final int categoryID}) =
+      _$ToDoEventLoadedImpl;
+
+  int get categoryID;
+  @JsonKey(ignore: true)
+  _$$ToDoEventLoadedImplCopyWith<_$ToDoEventLoadedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -262,7 +296,7 @@ class _$ToDoEventCreatedImpl implements ToDoEventCreated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function(int categoryID) loaded,
     required TResult Function(ToDo todo) created,
     required TResult Function(ToDo todo) updated,
   }) {
@@ -272,7 +306,7 @@ class _$ToDoEventCreatedImpl implements ToDoEventCreated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function(int categoryID)? loaded,
     TResult? Function(ToDo todo)? created,
     TResult? Function(ToDo todo)? updated,
   }) {
@@ -282,7 +316,7 @@ class _$ToDoEventCreatedImpl implements ToDoEventCreated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function(int categoryID)? loaded,
     TResult Function(ToDo todo)? created,
     TResult Function(ToDo todo)? updated,
     required TResult orElse(),
@@ -413,7 +447,7 @@ class _$ToDoEventUpdatedImpl implements ToDoEventUpdated {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
+    required TResult Function(int categoryID) loaded,
     required TResult Function(ToDo todo) created,
     required TResult Function(ToDo todo) updated,
   }) {
@@ -423,7 +457,7 @@ class _$ToDoEventUpdatedImpl implements ToDoEventUpdated {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
+    TResult? Function(int categoryID)? loaded,
     TResult? Function(ToDo todo)? created,
     TResult? Function(ToDo todo)? updated,
   }) {
@@ -433,7 +467,7 @@ class _$ToDoEventUpdatedImpl implements ToDoEventUpdated {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
+    TResult Function(int categoryID)? loaded,
     TResult Function(ToDo todo)? created,
     TResult Function(ToDo todo)? updated,
     required TResult orElse(),
@@ -494,7 +528,7 @@ mixin _$ToDoState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loadSuccess,
+    required TResult Function(List<ToDo> listToDo) loadSuccess,
     required TResult Function() loading,
     required TResult Function() loadFailuire,
   }) =>
@@ -502,7 +536,7 @@ mixin _$ToDoState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loadSuccess,
+    TResult? Function(List<ToDo> listToDo)? loadSuccess,
     TResult? Function()? loading,
     TResult? Function()? loadFailuire,
   }) =>
@@ -510,7 +544,7 @@ mixin _$ToDoState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loadSuccess,
+    TResult Function(List<ToDo> listToDo)? loadSuccess,
     TResult Function()? loading,
     TResult Function()? loadFailuire,
     required TResult orElse(),
@@ -599,7 +633,7 @@ class _$ToDoStateInitImpl implements ToDoStateInit {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loadSuccess,
+    required TResult Function(List<ToDo> listToDo) loadSuccess,
     required TResult Function() loading,
     required TResult Function() loadFailuire,
   }) {
@@ -610,7 +644,7 @@ class _$ToDoStateInitImpl implements ToDoStateInit {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loadSuccess,
+    TResult? Function(List<ToDo> listToDo)? loadSuccess,
     TResult? Function()? loading,
     TResult? Function()? loadFailuire,
   }) {
@@ -621,7 +655,7 @@ class _$ToDoStateInitImpl implements ToDoStateInit {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loadSuccess,
+    TResult Function(List<ToDo> listToDo)? loadSuccess,
     TResult Function()? loading,
     TResult Function()? loadFailuire,
     required TResult orElse(),
@@ -679,6 +713,8 @@ abstract class _$$ToDoStateLoadSuccessImplCopyWith<$Res> {
   factory _$$ToDoStateLoadSuccessImplCopyWith(_$ToDoStateLoadSuccessImpl value,
           $Res Function(_$ToDoStateLoadSuccessImpl) then) =
       __$$ToDoStateLoadSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({List<ToDo> listToDo});
 }
 
 /// @nodoc
@@ -688,61 +724,93 @@ class __$$ToDoStateLoadSuccessImplCopyWithImpl<$Res>
   __$$ToDoStateLoadSuccessImplCopyWithImpl(_$ToDoStateLoadSuccessImpl _value,
       $Res Function(_$ToDoStateLoadSuccessImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? listToDo = null,
+  }) {
+    return _then(_$ToDoStateLoadSuccessImpl(
+      listToDo: null == listToDo
+          ? _value._listToDo
+          : listToDo // ignore: cast_nullable_to_non_nullable
+              as List<ToDo>,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ToDoStateLoadSuccessImpl implements ToDoStateLoadSuccess {
-  const _$ToDoStateLoadSuccessImpl();
+  const _$ToDoStateLoadSuccessImpl({required final List<ToDo> listToDo})
+      : _listToDo = listToDo;
+
+  final List<ToDo> _listToDo;
+  @override
+  List<ToDo> get listToDo {
+    if (_listToDo is EqualUnmodifiableListView) return _listToDo;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_listToDo);
+  }
 
   @override
   String toString() {
-    return 'ToDoState.loadSuccess()';
+    return 'ToDoState.loadSuccess(listToDo: $listToDo)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ToDoStateLoadSuccessImpl);
+            other is _$ToDoStateLoadSuccessImpl &&
+            const DeepCollectionEquality().equals(other._listToDo, _listToDo));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_listToDo));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ToDoStateLoadSuccessImplCopyWith<_$ToDoStateLoadSuccessImpl>
+      get copyWith =>
+          __$$ToDoStateLoadSuccessImplCopyWithImpl<_$ToDoStateLoadSuccessImpl>(
+              this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loadSuccess,
+    required TResult Function(List<ToDo> listToDo) loadSuccess,
     required TResult Function() loading,
     required TResult Function() loadFailuire,
   }) {
-    return loadSuccess();
+    return loadSuccess(listToDo);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loadSuccess,
+    TResult? Function(List<ToDo> listToDo)? loadSuccess,
     TResult? Function()? loading,
     TResult? Function()? loadFailuire,
   }) {
-    return loadSuccess?.call();
+    return loadSuccess?.call(listToDo);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loadSuccess,
+    TResult Function(List<ToDo> listToDo)? loadSuccess,
     TResult Function()? loading,
     TResult Function()? loadFailuire,
     required TResult orElse(),
   }) {
     if (loadSuccess != null) {
-      return loadSuccess();
+      return loadSuccess(listToDo);
     }
     return orElse();
   }
@@ -786,7 +854,13 @@ class _$ToDoStateLoadSuccessImpl implements ToDoStateLoadSuccess {
 }
 
 abstract class ToDoStateLoadSuccess implements ToDoState {
-  const factory ToDoStateLoadSuccess() = _$ToDoStateLoadSuccessImpl;
+  const factory ToDoStateLoadSuccess({required final List<ToDo> listToDo}) =
+      _$ToDoStateLoadSuccessImpl;
+
+  List<ToDo> get listToDo;
+  @JsonKey(ignore: true)
+  _$$ToDoStateLoadSuccessImplCopyWith<_$ToDoStateLoadSuccessImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -828,7 +902,7 @@ class _$ToDoStateLoadingImpl implements ToDoStateLoading {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loadSuccess,
+    required TResult Function(List<ToDo> listToDo) loadSuccess,
     required TResult Function() loading,
     required TResult Function() loadFailuire,
   }) {
@@ -839,7 +913,7 @@ class _$ToDoStateLoadingImpl implements ToDoStateLoading {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loadSuccess,
+    TResult? Function(List<ToDo> listToDo)? loadSuccess,
     TResult? Function()? loading,
     TResult? Function()? loadFailuire,
   }) {
@@ -850,7 +924,7 @@ class _$ToDoStateLoadingImpl implements ToDoStateLoading {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loadSuccess,
+    TResult Function(List<ToDo> listToDo)? loadSuccess,
     TResult Function()? loading,
     TResult Function()? loadFailuire,
     required TResult orElse(),
@@ -944,7 +1018,7 @@ class _$ToDoStateLoadFailuireImpl implements ToDoStateLoadFailuire {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() init,
-    required TResult Function() loadSuccess,
+    required TResult Function(List<ToDo> listToDo) loadSuccess,
     required TResult Function() loading,
     required TResult Function() loadFailuire,
   }) {
@@ -955,7 +1029,7 @@ class _$ToDoStateLoadFailuireImpl implements ToDoStateLoadFailuire {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? init,
-    TResult? Function()? loadSuccess,
+    TResult? Function(List<ToDo> listToDo)? loadSuccess,
     TResult? Function()? loading,
     TResult? Function()? loadFailuire,
   }) {
@@ -966,7 +1040,7 @@ class _$ToDoStateLoadFailuireImpl implements ToDoStateLoadFailuire {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? init,
-    TResult Function()? loadSuccess,
+    TResult Function(List<ToDo> listToDo)? loadSuccess,
     TResult Function()? loading,
     TResult Function()? loadFailuire,
     required TResult orElse(),
