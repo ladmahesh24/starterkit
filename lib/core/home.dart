@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'app_bloc_provider.dart';
 import 'router.dart';
 
-class ToDoApp extends StatelessWidget {
-  const ToDoApp({super.key});
+class Home extends StatelessWidget {
+  const Home({super.key});
   @override
   Widget build(BuildContext context) {
     return AppBlocProvider(
