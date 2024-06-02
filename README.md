@@ -1,4 +1,4 @@
-# note_app
+# starterkit
 
 Flutter app with BLOC as state management
 

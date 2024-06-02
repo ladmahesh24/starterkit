@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'core/dependency_registration.dart';
-import 'core/home.dart';
+import 'core/main.dart';
 
 void main() {
   dependencyRegistration();
-  runApp(const Home());
+  runApp(const Main());
 }
